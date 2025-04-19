@@ -16,7 +16,7 @@ services:
     volumes:
       - ./todo.sql:/docker-entrypoint-initdb.d/todo.sql
     ports:
-      - "5432:5432"
+      - 5432:5432
     environment:
       - POSTGRES_USER=todo
       - POSTGRES_PASSWORD=password
