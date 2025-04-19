@@ -6,7 +6,11 @@ services:
     ports:
       - 8080:8080
     environment:
-      PORT: 8080
+      - PORT=8080
+      - DB_HOST=db
+      - DB_USER=todo
+      - DB_PASSWORD=password
+      - DB_NAME=todo
   db:
     image: postgres
     volumes:

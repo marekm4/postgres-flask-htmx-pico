@@ -1,14 +1,7 @@
-tasks = [
-    "Install Pico CSS",
-    "Install htmx",
-    "Install Flask",
-    "Install PostgreSQL",
-]
+
+def get_tasks(db):
+    return [row[0] for row in db.execute("select task from tasks order by id")]
 
 
-def get_tasks():
-    return tasks
-
-
-def add_task(task):
-    tasks.append(task)
+def add_task(db, task):
+    db.execute("insert into tasks (task) values (%s)", (task,))
