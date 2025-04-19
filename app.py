@@ -14,6 +14,7 @@ db = psycopg.Connection.connect(
 )
 db.autocommit = True
 
+
 @app.route("/")
 def index():
     return render_template("index.html")

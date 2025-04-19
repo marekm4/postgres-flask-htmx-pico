@@ -1,4 +1,3 @@
-
 def get_tasks(db):
     return [row[0] for row in db.execute("select task from tasks order by id")]
 
