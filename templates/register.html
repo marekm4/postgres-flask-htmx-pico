@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 {% for user in users %}
     <article>{{ user }}</article>
 {% endfor %}
@@ -7,3 +10,4 @@
         <button type="submit" hx-post="register">Register</button>
     </div>
 </form>
+{% endblock %}
