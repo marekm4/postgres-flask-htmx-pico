@@ -3,7 +3,7 @@ import os
 import psycopg
 from flask import Flask, render_template, request
 
-from todo import get_tasks, add_task
+from register import get_users, add_user
 
 app = Flask(__name__)
 db = psycopg.Connection.connect(
@@ -20,8 +20,8 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/todo", methods=["GET", "POST"])
-def todo():
+@app.route("/register", methods=["GET", "POST"])
+def register():
     if request.method == "POST":
-        add_task(db, request.form["task"])
-    return render_template("todo.html", tasks=get_tasks(db))
+        add_user(db, request.form["name"])
+    return render_template("register.html", users=get_users(db))

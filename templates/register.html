@@ -1,0 +1,9 @@
+{% for user in users %}
+    <article>{{ user }}</article>
+{% endfor %}
+<form>
+    <div class="grid">
+        <input type="text" name="name" placeholder="Name">
+        <button type="submit" hx-post="register">Register</button>
+    </div>
+</form>

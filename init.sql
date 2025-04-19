@@ -1,4 +1,4 @@
-create table tasks (
+create table users (
     id serial,
-    task text
+    name text
 );

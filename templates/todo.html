@@ -1,9 +1,0 @@
-{% for task in tasks %}
-    <article>{{ task }}</article>
-{% endfor %}
-<form>
-    <div class="grid">
-        <input type="text" name="task" placeholder="Task">
-        <button type="submit" hx-post="todo">Add</button>
-    </div>
-</form>
