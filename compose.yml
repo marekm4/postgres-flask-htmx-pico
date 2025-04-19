@@ -8,16 +8,16 @@ services:
     environment:
       - PORT=8080
       - DB_HOST=db
-      - DB_USER=todo
+      - DB_USER=user
       - DB_PASSWORD=password
-      - DB_NAME=todo
+      - DB_NAME=app
   db:
     image: postgres
     volumes:
-      - ./todo.sql:/docker-entrypoint-initdb.d/todo.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=todo
+      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=todo
+      - POSTGRES_DB=app
