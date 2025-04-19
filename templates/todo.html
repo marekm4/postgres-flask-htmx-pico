@@ -1,10 +1,9 @@
-<article>Install Pico CSS</article>
-<article>Install htmx</article>
-<article>Install Flask</article>
-<article>Install PostgreSQL</article>
+{% for task in tasks %}
+    <article>{{ task }}</article>
+{% endfor %}
 <form>
     <div class="grid">
         <input type="text" name="task" placeholder="Task" required="">
-        <button type="submit">Add</button>
+        <button type="submit" hx-post="todo">Add</button>
     </div>
 </form>
