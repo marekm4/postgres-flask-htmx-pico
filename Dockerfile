@@ -3,7 +3,7 @@ FROM python
 ENV PYTHONUNBUFFERED True
 
 WORKDIR /app
-COPY . .
+COPY ./ ./
 
 RUN pip install -r requirements.txt
 
