@@ -1,18 +1,9 @@
-import os
-
-import psycopg
 from flask import Flask, render_template, request
 
-from register import get_users, add_user
+from db import get_db, get_users, add_user
 
 app = Flask(__name__)
-db = psycopg.Connection.connect(
-    host=os.getenv('DB_HOST'),
-    user=os.getenv('DB_USER'),
-    password=os.getenv('DB_PASSWORD'),
-    dbname=os.getenv('DB_NAME'),
-)
-db.autocommit = True
+db = get_db()
 
 
 @app.route("/")
