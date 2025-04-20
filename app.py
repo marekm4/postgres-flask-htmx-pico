@@ -13,6 +13,11 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    errors = []
     if request.method == "POST":
-        add_user(db, request.form["name"])
-    return render_template("register.html", users=get_users(db))
+        name = request.form.get("name")
+        if len(name) > 0:
+            add_user(db, name)
+        else:
+            errors.append("Name is required")
+    return render_template("register.html", errors=errors, users=get_users(db))
