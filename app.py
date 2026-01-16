@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 
-from db import get_db, get_users, add_user
+from db import database_handle, get_users, add_user
 
 app = Flask(__name__)
-db = get_db()
+db = database_handle()
 
 
 @app.route("/")

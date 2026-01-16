@@ -3,21 +3,37 @@ import os
 import psycopg
 
 
-def get_db():
+def database_handle():
     db = psycopg.Connection.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         dbname=os.getenv("DB_NAME"),
+        autocommit=True,
+        row_factory=psycopg.rows.dict_row,
     )
-    db.autocommit = True
-    db.row_factory = psycopg.rows.dict_row
     return db
 
 
+def database_query(db, query, params=()):
+    return db.execute(query, params)
+
+
+def database_scalar(db, query, params=()):
+    return next(iter(database_row(db, query, params).values()))
+
+
+def database_row(db, query, params=()):
+    return database_query(db, query, params).fetchone()
+
+
+def database_table(db, query, params=()):
+    return database_query(db, query, params).fetchall()
+
+
 def get_users(db):
-    return [row["name"] for row in db.execute("select name from users order by id")]
+    return [row["name"] for row in database_table(db, "select name from users order by id")]
 
 
 def add_user(db, name):
-    db.execute("insert into users (name) values (%s)", (name,))
+    return database_query(db, "insert into users (name) values (%s)", (name,))
