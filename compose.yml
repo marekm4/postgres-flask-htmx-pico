@@ -4,20 +4,15 @@ services:
     volumes:
       - ./:/app
     ports:
-      - 8080:8080
-    environment:
-      - PORT=8080
-      - DB_HOST=db
-      - DB_USER=user
-      - DB_PASSWORD=password
-      - DB_NAME=app
+      - "8080:8080"
+    env_file: .env
     command: ["flask", "run", "-h", "0.0.0.0", "-p", "8080", "--debug"]
   db:
     image: postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
